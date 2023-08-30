@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Medicamento } from 'src/app/interfaces/medicamento';
+import { MedicamentoService } from 'src/app/services/medicamento.service';
 
 @Component({
   selector: 'app-list-medicamentos',
@@ -7,17 +8,18 @@ import { Medicamento } from 'src/app/interfaces/medicamento';
   styleUrls: ['./list-medicamentos.component.css']
 })
 export class ListMedicamentosComponent implements OnInit {
-  listMedicamentos: Medicamento[] = [
-    { id: 1, nome_medicamento: 'Dipirona', descricao: 'Uso oral', quantidade: 1500, laboratorio: 'BellPharma', forma_farmaceutica: 'Líquida', estoque: 0 },
-    { id: 2, nome_medicamento: 'Dorflex', descricao: 'Uso oral', quantidade: 580, laboratorio: 'BellPharma', forma_farmaceutica: 'Comprimido', estoque: 3 },
-    { id: 3, nome_medicamento: 'Halobex', descricao: 'Passar na ferida', quantidade: 250, laboratorio: 'BellPharma', forma_farmaceutica: 'pasta', estoque: 0 },
-
-  ]
-  constructor() {
+  listMedicamentos: Medicamento[] = []
+  constructor(private _medicamentoService: MedicamentoService) {
 
   }
   ngOnInit(): void {
+    this.getListMedicamentos();
+  }
 
+  getListMedicamentos() {
+    this._medicamentoService.getListMedicamentos().subscribe((data) => {
+      this.listMedicamentos = data;
+    })
   }
 }
 
