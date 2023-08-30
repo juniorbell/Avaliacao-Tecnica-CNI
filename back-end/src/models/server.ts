@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Request, Response } from 'express';
 import db from "../db/connection";
 import routesMedicamento from '../routes/medicamento';
@@ -31,6 +32,7 @@ class Server {
 
     midlewares() {
         this.app.use(express.json())
+        this.app.use(cors());
 
     }
 
