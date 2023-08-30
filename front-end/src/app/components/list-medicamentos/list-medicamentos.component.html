@@ -1,7 +1,7 @@
 <div class="container">
     <div class="title">
         <h4>Lista de Medicamentos</h4>
-        <button type="button" class="btn btn-warning ">Adicionar medicamento</button>
+        <button type="button" class="btn btn-warning" routerLink="/add-medicamento">Adicionar medicamento</button>
     </div>
     <table class="table table-hover">
         <thead>
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
           <tr *ngFor= "let item of listMedicamentos"  class="table-active" style="text-align: center;">
-            <td></td>
+            <td> {{item.id}} </td>
             <td> {{item.nome_medicamento}} </td>
             <td> {{item.descricao}} </td>
             <td> {{item.quantidade}}</td>
@@ -26,7 +26,7 @@
             <td> {{item.forma_farmaceutica}}</td>
             <td> {{item.estoque}}</td>
             <td>
-                <button type="button" class="btn btn-info btn-sm ms-2">Edt.</button>
+                <button routerLink="/editar-medicamento/{{item.id}}" type="button" class="btn btn-info btn-sm ms-2">Edt.</button>
                 <button type="button" class="btn btn-warning btn-sm ms-2">Del.</button>
 
             </td>
