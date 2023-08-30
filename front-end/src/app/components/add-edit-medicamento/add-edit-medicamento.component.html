@@ -3,17 +3,35 @@
         <div class="card bg-light mb-3" style="max-width: 30rem;" >
             <div class="card-header" style="text-align: center;"><h5>Adicionar  medicamento</h5></div>
             <div class="card-body">
-                <form>
-                    <input type="text" class="form-control" placeholder="Nome do medicamento">
-                    <input type="text" class="form-control mt-3" placeholder= "Descrição">
-                    <input type="text" class="form-control mt-3" placeholder=" Quantidade">
-                    <input type="text" class="form-control mt-3" placeholder="Laboratório">
-                    <input type="text" class="form-control mt-3" placeholder=" Forma Farmaceutica">
-                    <input type="text" class="form-control mt-3" placeholder="Estoque">
+                <form [formGroup] ="formMedicamento" (ngSubmit)="addMedicamento()">
+                    <input formControlName="nome_medicamento" type="text" class="form-control" placeholder="Nome do medicamento">
+                    <span *ngIf="formMedicamento.get('nome_medicamento')?.hasError('required') && formMedicamento.get('nome_medicamento')?.touched">
+                        Favor, inserir nome <strong>medicamento</strong>.
+                    </span>
+                    <input formControlName="descricao" type="text" class="form-control mt-3" placeholder= "Descrição">
+                    <span *ngIf="formMedicamento.get('descricao')?.hasError('required') && formMedicamento.get('descricao')?.touched">
+                        Favor, inserir <strong>descrição</strong> do medicamento.
+                    </span>
+                    <input formControlName="quantidade"type="number" class="form-control mt-3" placeholder=" Quantidade">
+                    <span *ngIf="formMedicamento.get('quantidade')?.hasError('required') && formMedicamento.get('quantidade')?.touched">
+                        Favor, inserir a <strong>quantidade</strong> produzida.
+                    </span>
+                    <input formControlName="laboratorio" type="text" class="form-control mt-3" placeholder="Laboratório">
+                    <span *ngIf="formMedicamento.get('laboratorio')?.hasError('required') && formMedicamento.get('laboratorio')?.touched">
+                        Favor, inserir o nome do <strong>laboratório</strong>.
+                    </span>
+                    <input formControlName="forma_farmaceutica" type="text" class="form-control mt-3" placeholder=" Forma Farmaceutica">
+                    <span *ngIf="formMedicamento.get('forma_farmaceutica')?.hasError('required') && formMedicamento.get('forma_farmaceutica')?.touched">
+                        Favor, selecionar a <strong>forma Farmaceutica</strong>.
+                    </span>
+                    <input formControlName="estoque" type="number" class="form-control mt-3" placeholder="Estoque">
+                    <span *ngIf="formMedicamento.get('estoque')?.hasError('required') && formMedicamento.get('estoque')?.touched">
+                        Favor, inserir a quantida em <strong>estoque</strong>.
+                    </span>
                 </form>
                 <div class="row mt-2 text-center">
                 <div class="col-lg-6" >
-                    <button  type="button" class="btn btn-success mt-3 ">Salvar</button>
+                    <button [disabled]="formMedicamento.invalid" type="submit" class="btn btn-success mt-3 ">Salvar</button>
                 </div>
                 <div class="col-lg-6">
                     <button routerLink="/" type="button" class="btn btn-danger mt-3 ">Cancelar</button>
