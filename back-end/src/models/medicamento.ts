@@ -20,5 +20,8 @@ const Medicamento = db.define('Medicamento', {
     estoque: {
         type: DataTypes.NUMBER
     },
+}, {
+    createdAt: false,
+    updatedAt: false
 });
 export default Medicamento;

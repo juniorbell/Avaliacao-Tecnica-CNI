@@ -24,5 +24,8 @@ const Medicamento = connection_1.default.define('Medicamento', {
     estoque: {
         type: sequelize_1.DataTypes.NUMBER
     },
+}, {
+    createdAt: false,
+    updatedAt: false
 });
 exports.default = Medicamento;
