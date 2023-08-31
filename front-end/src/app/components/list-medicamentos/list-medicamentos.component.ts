@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Medicamento } from 'src/app/interfaces/medicamento';
 import { MedicamentoService } from 'src/app/services/medicamento.service';
 
@@ -10,7 +11,7 @@ import { MedicamentoService } from 'src/app/services/medicamento.service';
 export class ListMedicamentosComponent implements OnInit {
   listMedicamentos: Medicamento[] = []
   loading: boolean = false;
-  constructor(private _medicamentoService: MedicamentoService) {
+  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService) {
 
   }
   ngOnInit(): void {
@@ -24,13 +25,14 @@ export class ListMedicamentosComponent implements OnInit {
         this.listMedicamentos = data;
         this.loading = false;
       })
-    }, 1500);
+    }, 600);
   }
 
   deleteMedicamento(id: number) {
     this.loading = true;
     this._medicamentoService.deleteMedicamento(id).subscribe(() => {
       this.getListMedicamentos();
+      this.toastr.warning('Medicamento excluido com sucesso!')
     })
   }
 }

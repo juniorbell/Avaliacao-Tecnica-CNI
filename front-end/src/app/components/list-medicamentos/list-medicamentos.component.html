@@ -4,7 +4,7 @@
         <h4>Lista de Medicamentos</h4>
         <button type="button" class="btn btn-warning" routerLink="/add-medicamento">Adicionar medicamento</button>
     </div>
-    <table class="table table-hover">
+    <table *ngIf="listMedicamentos.length > 0" class="table table-hover">
         <thead>
           <tr style="text-align: center;">
 
@@ -35,4 +35,5 @@
           </tr>
         </tbody>
       </table>
+        <h3 *ngIf="listMedicamentos.length == 0">No momento não há medicamentos cadastrados</h3>
 </div>
