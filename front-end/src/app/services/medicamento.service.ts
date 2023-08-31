@@ -21,4 +21,9 @@ export class MedicamentoService {
   getListMedicamentos(): Observable<Medicamento[]> {
     return this.http.get<Medicamento[]>(`${this.myAppUrl}${this.myApiUrl}`);
   }
+
+  deleteMedicamento(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+
+  }
 }

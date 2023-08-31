@@ -1,4 +1,5 @@
-<div class="container">
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="container">
     <div class="title">
         <h4>Lista de Medicamentos</h4>
         <button type="button" class="btn btn-warning" routerLink="/add-medicamento">Adicionar medicamento</button>
@@ -27,7 +28,7 @@
             <td> {{item.estoque}}</td>
             <td>
                 <button routerLink="/editar-medicamento/{{item.id}}" type="button" class="btn btn-info btn-sm ms-2">Edt.</button>
-                <button type="button" class="btn btn-warning btn-sm ms-2">Del.</button>
+                <button (click)="deleteMedicamento(item.id!)" type="button" class="btn btn-warning btn-sm ms-2">Del.</button>
 
             </td>
 

@@ -9,13 +9,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddEditMedicamentoComponent } from './components/add-edit-medicamento/add-edit-medicamento.component';
 import { ListMedicamentosComponent } from './components/list-medicamentos/list-medicamentos.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListMedicamentosComponent,
-    AddEditMedicamentoComponent
+    AddEditMedicamentoComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

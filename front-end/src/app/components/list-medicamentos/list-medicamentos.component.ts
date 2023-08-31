@@ -9,6 +9,7 @@ import { MedicamentoService } from 'src/app/services/medicamento.service';
 })
 export class ListMedicamentosComponent implements OnInit {
   listMedicamentos: Medicamento[] = []
+  loading: boolean = false;
   constructor(private _medicamentoService: MedicamentoService) {
 
   }
@@ -17,8 +18,19 @@ export class ListMedicamentosComponent implements OnInit {
   }
 
   getListMedicamentos() {
-    this._medicamentoService.getListMedicamentos().subscribe((data) => {
-      this.listMedicamentos = data;
+    this.loading = true;
+    setTimeout(() => {
+      this._medicamentoService.getListMedicamentos().subscribe((data) => {
+        this.listMedicamentos = data;
+        this.loading = false;
+      })
+    }, 1500);
+  }
+
+  deleteMedicamento(id: number) {
+    this.loading = true;
+    this._medicamentoService.deleteMedicamento(id).subscribe(() => {
+      this.getListMedicamentos();
     })
   }
 }
