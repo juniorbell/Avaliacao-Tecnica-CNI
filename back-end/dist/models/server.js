@@ -46,10 +46,10 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield connection_1.default.authenticate();
-                console.log('Base de dados conectada');
+                console.log('Base de dados conectada com sucesso.');
             }
             catch (error) {
-                console.log('Erro ao se conectar com a base de dados.');
+                console.log('Erro ao se conectar com a base de dados hahaahahaha.');
             }
         });
     }

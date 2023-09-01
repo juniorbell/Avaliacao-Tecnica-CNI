@@ -16,12 +16,8 @@ export const getMedicamento = async (req: Request, res: Response) => {
     } else {
         res.status(404).json({
             msg: `Não existe medicamento com esse registro de id ${id}`
-        });
+        })
     }
-    res.json({
-        msg: 'get Medicamento',
-        id
-    })
 }
 
 export const deleteMedicamento = async (req: Request, res: Response) => {
@@ -32,7 +28,7 @@ export const deleteMedicamento = async (req: Request, res: Response) => {
             msg: `Não existe medicamento com esse registro de id ${id}`
         })
     } else {
-        await medicamento?.destroy();
+        await medicamento.destroy();
         res.json({
             msg: `Medicamento excluido com sucesso!`
         })
@@ -52,10 +48,7 @@ export const postMedicamento = async (req: Request, res: Response) => {
         res.json({
             msg: `Erro ao cadastrar o medicamento, favor entra em contato com o suporte: (61) 0000-0000`
         })
-
     }
-
-
 }
 
 export const updateMedicamento = async (req: Request, res: Response) => {
@@ -71,7 +64,7 @@ export const updateMedicamento = async (req: Request, res: Response) => {
             })
         } else {
             res.status(404).json({
-                msg: `O medicamento com o id ${id} não foi encontrado.`
+                msg: `Não exite medicamento com o ${id}`
             })
         }
     } catch (error) {

@@ -1,9 +1,11 @@
 import cors from 'cors';
-import express, { Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import db from "../db/connection";
 import routesMedicamento from '../routes/medicamento';
+
+
 class Server {
-    private app: express.Application;
+    private app: Application;
     private port: string;
 
     constructor() {
@@ -37,16 +39,12 @@ class Server {
     }
 
     async dbConnect() {
-
-
         try {
             await db.authenticate();
-            console.log('Base de dados conectada')
+            console.log('Base de dados conectada com sucesso.')
         } catch (error) {
-            console.log('Erro ao se conectar com a base de dados.')
+            console.log('Erro ao se conectar com a base de dados hahaahahaha.')
         }
-
-
     }
 }
 

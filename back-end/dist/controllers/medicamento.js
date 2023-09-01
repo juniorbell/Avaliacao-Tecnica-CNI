@@ -30,10 +30,6 @@ const getMedicamento = (req, res) => __awaiter(void 0, void 0, void 0, function*
             msg: `Não existe medicamento com esse registro de id ${id}`
         });
     }
-    res.json({
-        msg: 'get Medicamento',
-        id
-    });
 });
 exports.getMedicamento = getMedicamento;
 const deleteMedicamento = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,7 +41,7 @@ const deleteMedicamento = (req, res) => __awaiter(void 0, void 0, void 0, functi
         });
     }
     else {
-        yield (medicamento === null || medicamento === void 0 ? void 0 : medicamento.destroy());
+        yield medicamento.destroy();
         res.json({
             msg: `Medicamento excluido com sucesso!`
         });
@@ -81,7 +77,7 @@ const updateMedicamento = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
         else {
             res.status(404).json({
-                msg: `O medicamento com o id ${id} não foi encontrado.`
+                msg: `Não exite medicamento com o ${id}`
             });
         }
     }
