@@ -1,0 +1,44 @@
+.splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dbdbdb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .splash img {
+    width: 450px;
+    height: 200px;
+    animation: fadeIn cubic-bezier(0.215, 0.610, 0.355, 1) ;
+  }
+  
+  .content {
+    display: none; /* Oculta o conteúdo principal até o fim da splash screen */
+  }
+  
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    background-color: #dbdbdb;
+    padding: 10px 0;
+    z-index: 2;
+  }
+  
+  .footer img {
+    width: 120px; /* Ajuste o tamanho da imagem conforme necessário */
+  }

@@ -1,41 +1,42 @@
-<div class="row mt-5" >
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading"class="row mt-5" >
     <div class="col-lg-4 offset-lg-5">
         <div class="card bg-light mb-3" style="max-width: 30rem;" >
-            <div class="card-header" style="text-align: center;"><h5>Adicionar  medicamento</h5></div>
+            <div class="card-header mt-2" style="text-align: center;"><h4> {{operacion}} medicamento</h4></div>
             <div class="card-body">
                 <form [formGroup] ="formMedicamento" (ngSubmit)="addMedicamento()">
-                    <input formControlName="nome_medicamento" type="text" class="form-control" placeholder="Nome do medicamento">
+                    <input formControlName="nome_medicamento" type="text" id="nome_medicamento" class="form-control" placeholder="Nome do medicamento">
                     <span *ngIf="formMedicamento.get('nome_medicamento')?.hasError('required') && formMedicamento.get('nome_medicamento')?.touched">
                         Favor, inserir nome <strong>medicamento</strong>.
                     </span>
-                    <input formControlName="descricao" type="text" class="form-control mt-3" placeholder= "Descrição">
+                    <input formControlName="descricao" type="text" id="descricao" class="form-control mt-3" placeholder= "Descrição">
                     <span *ngIf="formMedicamento.get('descricao')?.hasError('required') && formMedicamento.get('descricao')?.touched">
                         Favor, inserir <strong>descrição</strong> do medicamento.
                     </span>
-                    <input formControlName="quantidade"type="number" class="form-control mt-3" placeholder=" Quantidade">
+                    <input formControlName="quantidade" type="number" id="quantidade" class="form-control mt-3" placeholder=" Quantidade">
                     <span *ngIf="formMedicamento.get('quantidade')?.hasError('required') && formMedicamento.get('quantidade')?.touched">
                         Favor, inserir a <strong>quantidade</strong> produzida.
                     </span>
-                    <input formControlName="laboratorio" type="text" class="form-control mt-3" placeholder="Laboratório">
+                    <input formControlName="laboratorio" type="text" id="laboratorio" class="form-control mt-3" placeholder="Laboratório">
                     <span *ngIf="formMedicamento.get('laboratorio')?.hasError('required') && formMedicamento.get('laboratorio')?.touched">
                         Favor, inserir o nome do <strong>laboratório</strong>.
                     </span>
-                    <input formControlName="forma_farmaceutica" type="text" class="form-control mt-3" placeholder=" Forma Farmaceutica">
+                    <input formControlName="forma_farmaceutica" type="text" id="forma_farmaceutica" class="form-control mt-3" placeholder=" Forma Farmaceutica">
                     <span *ngIf="formMedicamento.get('forma_farmaceutica')?.hasError('required') && formMedicamento.get('forma_farmaceutica')?.touched">
                         Favor, selecionar a <strong>forma Farmaceutica</strong>.
                     </span>
-                    <input formControlName="estoque" type="number" class="form-control mt-3" placeholder="Estoque">
+                    <input formControlName="estoque" type="number" id="estoque" class="form-control mt-3" placeholder="Estoque">
                     <span *ngIf="formMedicamento.get('estoque')?.hasError('required') && formMedicamento.get('estoque')?.touched">
                         Favor, inserir a quantida em <strong>estoque</strong>.
                     </span>
                 </form>
                 <div class="row mt-2 text-center">
                 <div class="col-lg-6" >
-                    <button [disabled]="formMedicamento.invalid" type="submit" class="btn btn-success mt-3 ">Salvar</button>
+                    <button [disabled]="formMedicamento.invalid" type="submit" class="btn btn-primary mt-3 "><i class="fa-solid fa-check"></i></button>
                 </div>
                 <div class="col-lg-6">
-                    <button routerLink="/" type="button" class="btn btn-danger mt-3 ">Cancelar</button>
-                </div>
+                    <button routerLink="/" type="button" class="btn btn-danger mt-3 "><i class="fa-solid fa-xmark"></i></button>
+                  <!--<button (click)="generatePDF()" type="button" class="btn btn-primary"><i class="fa-solid fa-print"></i></button> -->  
                 </div>
             </div>
     </div>

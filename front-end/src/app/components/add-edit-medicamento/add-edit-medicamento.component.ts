@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Medicamento } from 'src/app/interfaces/medicamento';
+import { MedicamentoService } from 'src/app/services/medicamento.service';
+
+
 
 @Component({
   selector: 'app-add-edit-medicamento',
@@ -9,9 +14,14 @@ import { Medicamento } from 'src/app/interfaces/medicamento';
 })
 export class AddEditMedicamentoComponent implements OnInit {
   formMedicamento: FormGroup;
+  loading: boolean = false;
+  id: number;
+  operacion: string = 'Cadastrar novo';
 
-  constructor(private fb: FormBuilder) {
-    this.formMedicamento = this.fb.group({
+
+  constructor(private FormBuilder: FormBuilder, private _medicamentoService: MedicamentoService, private router: Router, private toastr: ToastrService, private aRouter: ActivatedRoute,) {
+
+    this.formMedicamento = this.FormBuilder.group({
       nome_medicamento: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: ['', Validators.required],
@@ -20,12 +30,32 @@ export class AddEditMedicamentoComponent implements OnInit {
       estoque: ['', Validators.required],
 
     })
-
+    this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
-
+    if (this.id != 0) {
+      this.operacion = 'Editar ';
+      this.getMedicamento(this.id);
+    }
   };
+
+  getMedicamento(id: number) {
+    this.loading = true;
+    this._medicamentoService.getMedicamento(id).subscribe((data: Medicamento) => {
+      this.loading = false;
+      this.formMedicamento.setValue({
+        nome_medicamento: data.nome_medicamento,
+        descricao: data.descricao,
+        quantidade: data.quantidade,
+        laboratorio: data.laboratorio,
+        forma_farmaceutica: data.forma_farmaceutica,
+        estoque: data.estoque
+      })
+    })
+  }
+
+
   addMedicamento() {
     const medicamento: Medicamento = {
       nome_medicamento: this.formMedicamento.value.nome_medicamento,
@@ -35,6 +65,42 @@ export class AddEditMedicamentoComponent implements OnInit {
       forma_farmaceutica: this.formMedicamento.value.forma_farmaceutica,
       estoque: this.formMedicamento.value.estoque,
     }
-    console.log(medicamento);
-  };
+    this.loading = true;
+    if (this.id !== 0) {
+      medicamento.id = this.id;
+      this._medicamentoService.updateMedicamento(this.id, medicamento).subscribe(() => {
+        this.toastr.success(`Medicamento ${medicamento.nome_medicamento} atualizado com sucesso!`, 'Produto atualizado.')
+        this.loading = false;
+        this.router.navigate(['/'])
+      })
+
+    } else {
+      this._medicamentoService.saveMedicamento(medicamento).subscribe(() => {
+        this.toastr.success(`O medicamento ${medicamento.nome_medicamento} foi adicionado com sucesso!`)
+        this.router.navigate(['/'])
+      })
+    }
+
+
+  }
+
+
 }
+
+/*  generatePDF() {
+    var formData = this.formMedicamento.value;
+    doc.text("This is centred text.", 105, 80,);
+    doc.setFontSize(22);
+    const text = `Nome medicamento: 
+    ${formData.nome_medicamento} Descrição : ${formData.descricao}
+    Quantidade:${formData.quantidade}
+    Laboratório: ${formData.laboratorio}
+    Forma Farmacêutica: ${formData.forma_farmaceutica}
+    Estoque: ${formData.estoque}`;
+
+
+    doc.text(text, 10, 10);
+    doc.output("dataurlnewwindow");
+  } */
+
+

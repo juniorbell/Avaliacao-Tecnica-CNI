@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { jsPDF } from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
+import { PrimeNGConfig } from 'primeng/api';
 import { Medicamento } from 'src/app/interfaces/medicamento';
 import { MedicamentoService } from 'src/app/services/medicamento.service';
+
+
+
+
+
 
 @Component({
   selector: 'app-list-medicamentos',
@@ -11,12 +18,31 @@ import { MedicamentoService } from 'src/app/services/medicamento.service';
 export class ListMedicamentosComponent implements OnInit {
   listMedicamentos: Medicamento[] = []
   loading: boolean = false;
-  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService) {
+  showSplash = true;
+
+  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService,
+    private primengConfig: PrimeNGConfig, private elementRef: ElementRef) {
 
   }
-  ngOnInit(): void {
-    this.getListMedicamentos();
+  searchMedicamento(event: any) {
+    const filtro = event.target.value.toLowerCase();
+
   }
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+    this.getListMedicamentos();
+    setTimeout(() => {
+      this.showSplash = false;
+    }, 700)
+  }
+
+  @HostListener('window:load', ['$event'])
+  onWindowLoad(event: Event) {
+    // Quando a página termina de carregar completamente, ocultar a splash screen
+    this.loading = false;
+  }
+
 
   getListMedicamentos() {
     this.loading = true;
@@ -35,5 +61,19 @@ export class ListMedicamentosComponent implements OnInit {
       this.toastr.warning('Medicamento excluido com sucesso!')
     })
   }
+
+  generatePDF() {
+    const doc = new jsPDF();
+    const content = this.elementRef.nativeElement;
+    const specialElementHandlers = {
+      '#editor': function () {
+        return true;
+      },
+    };
+    doc.output("dataurlnewwindow");
+  }
+
 }
+
+
 
