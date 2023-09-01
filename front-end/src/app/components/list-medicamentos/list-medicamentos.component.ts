@@ -1,7 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
-import { PrimeNGConfig } from 'primeng/api';
 import { Medicamento } from 'src/app/interfaces/medicamento';
 import { MedicamentoService } from 'src/app/services/medicamento.service';
 
@@ -20,8 +19,7 @@ export class ListMedicamentosComponent implements OnInit {
   loading: boolean = false;
   showSplash = true;
 
-  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService,
-    private primengConfig: PrimeNGConfig, private elementRef: ElementRef) {
+  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService, private elementRef: ElementRef) {
 
   }
   searchMedicamento(event: any) {
@@ -30,11 +28,10 @@ export class ListMedicamentosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
     this.getListMedicamentos();
     setTimeout(() => {
       this.showSplash = false;
-    }, 700)
+    }, 3000)
   }
 
   @HostListener('window:load', ['$event'])
