@@ -38,10 +38,10 @@ Antes de começar, você deve ter o seguinte instalado em sua máquina:
 ## git clone
 
 1. Clone este repositório em sua máquina local usando o seguinte comando: 
-  1.1 git clone https://github.com/juniorbell/Avaliacao-Tecnica-CNI.git
-  1.2 navegue até o diretório do projeto Avaliacao-Tecnica-CNI/front-end
+ - git clone https://github.com/juniorbell/Avaliacao-Tecnica-CNI.git
+ - navegue até o diretório do projeto Avaliacao-Tecnica-CNI/front-end
 2. Instale as dependências do projeto usando o npm: 
-   2.1 npm install
+- npm install
 
 ## Executando a aplicação
 - Após concluir a instalação, você pode iniciar o servidor de desenvolvimento do angular, executando o seguinte comando:
@@ -54,7 +54,7 @@ O A aplicação estará disponível em `http://localhost:4200/`
 - Após realizar o git clone da aplicação, navegue até o diretório do projeto
 O cd Avaliacao-Tecnica-CNI\back-end
 O Instale as dependências do projeto usando o npm: 
-   1.1 npm install
+O npm install
 
 ## Configuração
 
