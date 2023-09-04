@@ -19,9 +19,9 @@ export class AddEditMedicamentoComponent implements OnInit {
   operacion: string = 'Cadastrar novo';
 
 
-  constructor(private FormBuilder: FormBuilder, private _medicamentoService: MedicamentoService, private router: Router, private toastr: ToastrService, private aRouter: ActivatedRoute,) {
+  constructor(private fb: FormBuilder, private _medicamentoService: MedicamentoService, private router: Router, private toastr: ToastrService, private aRouter: ActivatedRoute,) {
 
-    this.formMedicamento = this.FormBuilder.group({
+    this.formMedicamento = this.fb.group({
       nome_medicamento: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: ['', Validators.required],
@@ -69,15 +69,16 @@ export class AddEditMedicamentoComponent implements OnInit {
     if (this.id !== 0) {
       medicamento.id = this.id;
       this._medicamentoService.updateMedicamento(this.id, medicamento).subscribe(() => {
-        this.toastr.success(`Medicamento ${medicamento.nome_medicamento} atualizado com sucesso!`, 'Produto atualizado.')
+        this.toastr.info(`Medicamento ${medicamento.nome_medicamento} atualizado com sucesso!`, 'Produto atualizado.')
         this.loading = false;
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
       })
 
     } else {
       this._medicamentoService.saveMedicamento(medicamento).subscribe(() => {
-        this.toastr.success(`O medicamento ${medicamento.nome_medicamento} foi adicionado com sucesso!`)
-        this.router.navigate(['/'])
+        this.toastr.success(`O medicamento ${medicamento.nome_medicamento} foi adicionado com sucesso!`);
+        this.loading = false;
+        this.router.navigate(['/']);
       })
     }
 
@@ -87,20 +88,6 @@ export class AddEditMedicamentoComponent implements OnInit {
 
 }
 
-/*  generatePDF() {
-    var formData = this.formMedicamento.value;
-    doc.text("This is centred text.", 105, 80,);
-    doc.setFontSize(22);
-    const text = `Nome medicamento: 
-    ${formData.nome_medicamento} Descrição : ${formData.descricao}
-    Quantidade:${formData.quantidade}
-    Laboratório: ${formData.laboratorio}
-    Forma Farmacêutica: ${formData.forma_farmaceutica}
-    Estoque: ${formData.estoque}`;
 
-
-    doc.text(text, 10, 10);
-    doc.output("dataurlnewwindow");
-  } */
 
 

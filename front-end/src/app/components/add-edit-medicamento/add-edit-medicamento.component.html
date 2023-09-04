@@ -1,5 +1,4 @@
-<app-progress-bar *ngIf="loading"></app-progress-bar>
-<div *ngIf="!loading"class="row mt-5" >
+<div class="row mt-5" >
     <div class="col-lg-4 offset-lg-5">
         <div class="card bg-light mb-3" style="max-width: 30rem;" >
             <div class="card-header mt-2" style="text-align: center;"><h4> {{operacion}} medicamento</h4></div>
@@ -13,7 +12,7 @@
                     <span *ngIf="formMedicamento.get('descricao')?.hasError('required') && formMedicamento.get('descricao')?.touched">
                         Favor, inserir <strong>descrição</strong> do medicamento.
                     </span>
-                    <input formControlName="quantidade" type="number" id="quantidade" class="form-control mt-3" placeholder=" Quantidade">
+                    <input formControlName="quantidade" type="number" id="quantidade" class="form-control mt-3" placeholder=" Quantidade" mask="9{1,}.9{2}">
                     <span *ngIf="formMedicamento.get('quantidade')?.hasError('required') && formMedicamento.get('quantidade')?.touched">
                         Favor, inserir a <strong>quantidade</strong> produzida.
                     </span>
@@ -25,7 +24,7 @@
                     <span *ngIf="formMedicamento.get('forma_farmaceutica')?.hasError('required') && formMedicamento.get('forma_farmaceutica')?.touched">
                         Favor, selecionar a <strong>forma Farmaceutica</strong>.
                     </span>
-                    <input formControlName="estoque" type="number" id="estoque" class="form-control mt-3" placeholder="Estoque">
+                    <input formControlName="estoque" type="number" id="estoque" class="form-control mt-3" placeholder="Estoque" mask="9{1,}.9{2}">
                     <span *ngIf="formMedicamento.get('estoque')?.hasError('required') && formMedicamento.get('estoque')?.touched">
                         Favor, inserir a quantida em <strong>estoque</strong>.
                     </span>
@@ -36,7 +35,6 @@
                 </div>
                 <div class="col-lg-6">
                     <button routerLink="/" type="button" class="btn btn-danger mt-3 ">Cancelar</button>
-                  <!--<button (click)="generatePDF()" type="button" class="btn btn-primary"><i class="fa-solid fa-print"></i></button> -->  
                 </div>
             </div>
     </div>

@@ -1,32 +1,48 @@
-.title{
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
+.title {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 100%;
-    background-color: transparent;
-    padding: 10px 0;
-    z-index: 2;
-  }
-  
-  .footer img {
-    width: 120px; /* Ajuste o tamanho da imagem conforme necessário */
-  }
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  background-color: transparent;
+  padding: 10px 0;
+  z-index: 2;
+}
+
+.footer img {
+  width: 120px;
+  /* Ajuste o tamanho da imagem conforme necessário */
+}
 
 
+.table {
+  font-size: 16px;
+  background-color: #006BB7;
+  border-radius: 15px 15px 0px 0px;
 
-.pdf-content {
+}
 
- display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%
+
+/* Alterar a cor do cabeçalho da tabela */
+.table thead th {
+  background-color: transparent;
+  color: #fff;
+}
+
+/* Alterar a cor das células da tabela quando o mouse passa por cima */
+.tbody {
+  background-color: #003569;
+  /* Cor de fundo cinza claro */
+}
+
+
+tr.horizontal-line {
+  border-bottom: 2px solid #000;
 }

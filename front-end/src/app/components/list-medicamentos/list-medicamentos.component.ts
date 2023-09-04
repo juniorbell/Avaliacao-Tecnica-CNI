@@ -1,9 +1,8 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { jsPDF } from 'jspdf';
+import { Component, OnInit } from '@angular/core';
+import { ExportAsConfig, ExportAsService, SupportedExtensions, } from 'ngx-export-as';
 import { ToastrService } from 'ngx-toastr';
 import { Medicamento } from 'src/app/interfaces/medicamento';
 import { MedicamentoService } from 'src/app/services/medicamento.service';
-
 
 
 
@@ -15,17 +14,26 @@ import { MedicamentoService } from 'src/app/services/medicamento.service';
   styleUrls: ['./list-medicamentos.component.css']
 })
 export class ListMedicamentosComponent implements OnInit {
-  listMedicamentos: Medicamento[] = []
+  listMedicamentos!: Medicamento[];
   loading: boolean = false;
   showSplash = true;
+  downloadAs: SupportedExtensions = 'pdf';
+  exportAsConfig: ExportAsConfig = {
+    type: 'pdf',
+    elementIdOrContent: 'content',
+    options: {
+      pdfOptions: {
+        orientation: 'portrait',
+      },
+    },
+  };
 
-  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService, private elementRef: ElementRef) {
+
+  constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService, private exportAsService: ExportAsService) {
 
   }
-  searchMedicamento(event: any) {
-    const filtro = event.target.value.toLowerCase();
 
-  }
+
 
   ngOnInit(): void {
     this.getListMedicamentos();
@@ -33,18 +41,10 @@ export class ListMedicamentosComponent implements OnInit {
       this.showSplash = false;
     }, 3000)
   }
-
-  @HostListener('window:load', ['$event'])
-  onWindowLoad(event: Event) {
-    // Quando a página termina de carregar completamente, ocultar a splash screen
-    this.loading = false;
-  }
-
-
   getListMedicamentos() {
     this.loading = true;
     setTimeout(() => {
-      this._medicamentoService.getListMedicamentos().subscribe((data) => {
+      this._medicamentoService.getListMedicamentos().subscribe((data: Medicamento[]) => {
         this.listMedicamentos = data;
         this.loading = false;
       })
@@ -59,18 +59,19 @@ export class ListMedicamentosComponent implements OnInit {
     })
   }
 
-  generatePDF() {
-    const doc = new jsPDF();
-    const content = this.elementRef.nativeElement;
-    const specialElementHandlers = {
-      '#editor': function () {
-        return true;
-      },
+  export() {
+    this.exportAsConfig.type = this.downloadAs;
+    this.exportAsService
+    this.exportAsConfig.options = {
+      orientation: 'landscape',
     };
-    doc.output("dataurlnewwindow");
+    this.exportAsService.save(this.exportAsConfig, 'Lista de Medicamentos')
+      .subscribe(() => {
+      });
+    this.exportAsService.get(this.exportAsConfig);
   }
-
 }
+
 
 
 
