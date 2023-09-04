@@ -47,7 +47,7 @@ Antes de começar, você deve ter o seguinte instalado em sua máquina:
 - Após concluir a instalação, você pode iniciar o servidor de desenvolvimento do angular, executando o seguinte comando:
 O ng serve.
 
-O A aplicação estará disponível em `http://localhost:4200/`
+ A aplicação estará disponível em `http://localhost:4200/`
 
 # Guia de execução da aplicação  back-end 
 
