@@ -43,7 +43,7 @@ Antes de começar, você deve ter o seguinte instalado em sua máquina:
 2. Instale as dependências do projeto usando o npm: 
    2.1 npm install
 
-##Executando a aplicação
+## Executando a aplicação
   Após concluir a instalação, você pode iniciar o servidor de desenvolvimento do angular, executando o seguinte comando:
     - ng serve.
 
