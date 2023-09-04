@@ -44,16 +44,16 @@ Antes de começar, você deve ter o seguinte instalado em sua máquina:
    2.1 npm install
 
 ## Executando a aplicação
-  Após concluir a instalação, você pode iniciar o servidor de desenvolvimento do angular, executando o seguinte comando:
-    - ng serve.
+- Após concluir a instalação, você pode iniciar o servidor de desenvolvimento do angular, executando o seguinte comando:
+O ng serve.
 
-A aplicação estará disponível em `http://localhost:4200/`
+O A aplicação estará disponível em `http://localhost:4200/`
 
 # Guia de execução da aplicação  back-end 
 
-Após realizar o git clone da aplicação, navegue até o diretório do projeto
-  cd Avaliacao-Tecnica-CNI\back-end
-1. Instale as dependências do projeto usando o npm: 
+- Após realizar o git clone da aplicação, navegue até o diretório do projeto
+O cd Avaliacao-Tecnica-CNI\back-end
+O Instale as dependências do projeto usando o npm: 
    1.1 npm install
 
 ## Configuração
