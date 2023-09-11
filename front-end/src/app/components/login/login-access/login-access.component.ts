@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class LoginAccessComponent {
 
+  username: string = ''
+  password: string = ''
+
+
+  login() {
+    if (this.username === 'bellpharma' && this.password === '123') {
+      console.log('login bem sucedido!');
+    } else {
+      console.log('Falha na autenticação')
+    }
+  }
+
 }

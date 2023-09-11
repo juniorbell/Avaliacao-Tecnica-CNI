@@ -1,17 +1,17 @@
 
 <div class="login-box">
     <p>Login</p>
-    <form>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
       <div class="user-box">
-        <input required="" name="" type="text">
-        <label>Email</label>
+        <input name="username" type="text" id="username" [(ngModel)]="username" required="Favor, iserir email válido.">
+        <label for="username">Usuário</label>
       </div>
       <div class="user-box">
-        <input required="" name="" type="password">
+        <input name="password" id="password" [(ngModel)]="password" type="password" required="Favor, inserir senha válida.">
         <label>Password</label>
       </div>
-      <a href="#">
+      <button  type="submit" [disabled]="loginForm.invalid" href="#">
         Acessar
-      </a>
+      </button>
     </form>
   </div>
