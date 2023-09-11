@@ -13,6 +13,8 @@
             <th scope="col">Laboratório</th>
             <th scope="col">Forma Farmaceutica</th>
             <th scope="col">Estoque</th>
+            <th scope="col">Indicações</th>
+            <th scope="col">Efeitos colaterais</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -25,6 +27,8 @@
             <td> {{item.laboratorio}}</td>
             <td> {{item.forma_farmaceutica}}</td>
             <td> {{item.estoque}}</td>
+            <td> {{item.indicacoes}}</td>
+            <td> {{item.efeitos_colaterais}}</td>
             <td>
                 <button routerLink="/editar-medicamento/{{item.id}}" type="button" class="btn btn-info btn-sm ms-2"><i class="fa-solid fa-pen"></i></button>
                 <button (click)="deleteMedicamento(item.id!)" type="button" class="btn btn-warning btn-sm ms-2"><i class="fa-solid fa-trash"></i></button>

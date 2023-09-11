@@ -1,4 +1,17 @@
 ::ng-deep .navbar {
-    box-shadow: 10px 0px 15px 0px #444444;
-    
+  box-shadow: 10px 0px 15px 0px #444444;
+
+}
+
+.linkedin {
+  width: 4rem;
+  border-radius: 25px 25px 25px 25px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: none;
+}
+
+.fa-brands {
+  font-size: 2rem;
+  color: #006BB7;
 }

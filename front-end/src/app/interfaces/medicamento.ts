@@ -6,5 +6,7 @@ export interface Medicamento {
     laboratorio: string;
     forma_farmaceutica: string;
     estoque: number;
+    indicacoes: string;
+    efeitos_colaterais: string
 
 }

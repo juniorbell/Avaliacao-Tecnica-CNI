@@ -32,9 +32,6 @@ export class ListMedicamentosComponent implements OnInit {
   constructor(private _medicamentoService: MedicamentoService, private toastr: ToastrService, private exportAsService: ExportAsService) {
 
   }
-
-
-
   ngOnInit(): void {
     this.getListMedicamentos();
     setTimeout(() => {

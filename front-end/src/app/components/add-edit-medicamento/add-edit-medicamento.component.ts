@@ -19,15 +19,17 @@ export class AddEditMedicamentoComponent implements OnInit {
   operacion: string = 'Cadastrar novo';
 
 
-  constructor(private fb: FormBuilder, private _medicamentoService: MedicamentoService, private router: Router, private toastr: ToastrService, private aRouter: ActivatedRoute,) {
+  constructor(private FormBuilder: FormBuilder, private _medicamentoService: MedicamentoService, private router: Router, private toastr: ToastrService, private aRouter: ActivatedRoute,) {
 
-    this.formMedicamento = this.fb.group({
+    this.formMedicamento = this.FormBuilder.group({
       nome_medicamento: ['', Validators.required],
       descricao: ['', Validators.required],
       quantidade: ['', Validators.required],
       laboratorio: ['', Validators.required],
       forma_farmaceutica: ['', Validators.required],
       estoque: ['', Validators.required],
+      indicacoes: ['', Validators.required],
+      efeitos: ['', Validators.required]
 
     })
     this.id = Number(aRouter.snapshot.paramMap.get('id'));
@@ -50,7 +52,9 @@ export class AddEditMedicamentoComponent implements OnInit {
         quantidade: data.quantidade,
         laboratorio: data.laboratorio,
         forma_farmaceutica: data.forma_farmaceutica,
-        estoque: data.estoque
+        estoque: data.estoque,
+        indicacoes: data.indicacoes,
+        efeitos_colaterais: data.efeitos_colaterais
       })
     })
   }
@@ -64,21 +68,22 @@ export class AddEditMedicamentoComponent implements OnInit {
       laboratorio: this.formMedicamento.value.laboratorio,
       forma_farmaceutica: this.formMedicamento.value.forma_farmaceutica,
       estoque: this.formMedicamento.value.estoque,
+      indicacoes: this.formMedicamento.value.indicacoes,
+      efeitos_colaterais: this.formMedicamento.value.efeitos_colaterais,
     }
     this.loading = true;
-    if (this.id !== 0) {
+    if (this.id == undefined) {
       medicamento.id = this.id;
       this._medicamentoService.updateMedicamento(this.id, medicamento).subscribe(() => {
-        this.toastr.info(`Medicamento ${medicamento.nome_medicamento} atualizado com sucesso!`, 'Produto atualizado.')
+        this.toastr.success(`Medicamento ${medicamento.nome_medicamento} atualizado com sucesso!`, 'Produto atualizado.')
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/'])
       })
 
     } else {
-      this._medicamentoService.saveMedicamento(medicamento).subscribe(() => {
-        this.toastr.success(`O medicamento ${medicamento.nome_medicamento} foi adicionado com sucesso!`);
-        this.loading = false;
-        this.router.navigate(['/']);
+      this._medicamentoService.addMedicamento(medicamento).subscribe(() => {
+        this.toastr.success(`O medicamento ${medicamento.nome_medicamento} foi adicionado com sucesso!`)
+        this.router.navigate(['/'])
       })
     }
 
@@ -87,7 +92,5 @@ export class AddEditMedicamentoComponent implements OnInit {
 
 
 }
-
-
 
 

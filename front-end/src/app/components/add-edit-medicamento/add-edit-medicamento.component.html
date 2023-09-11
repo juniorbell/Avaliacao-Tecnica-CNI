@@ -1,8 +1,13 @@
 <div class="row mt-5" >
     <div class="col-lg-4 offset-lg-5">
+
         <div class="card bg-light mb-3" style="max-width: 30rem;" >
-            <div class="card-header mt-2" style="text-align: center;"><h4> {{operacion}} medicamento</h4></div>
+           
             <div class="card-body">
+                <div class="container">
+                    <div class="card-header mt-2" style="text-align: center;"><h4> {{operacion}} medicamento</h4></div>
+                    <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
+                </div>
                 <form [formGroup] ="formMedicamento" (ngSubmit)="addMedicamento()">
                     <input formControlName="nome_medicamento" type="text" id="nome_medicamento" class="form-control" placeholder="Nome do medicamento">
                     <span *ngIf="formMedicamento.get('nome_medicamento')?.hasError('required') && formMedicamento.get('nome_medicamento')?.touched">
