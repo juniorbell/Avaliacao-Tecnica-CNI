@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-access',
@@ -10,12 +12,16 @@ export class LoginAccessComponent {
   username: string = ''
   password: string = ''
 
+  constructor(private router: Router, private toastr: ToastrService,) { }
+
+
 
   login() {
     if (this.username === 'bellpharma' && this.password === '123') {
-      console.log('login bem sucedido!');
+      this.router.navigate(['/medicamentos'])
+      this.toastr.success('Seja bem vindo!')
     } else {
-      console.log('Falha na autenticação')
+      this.toastr.warning('Usuario não reconhecido')
     }
   }
 
